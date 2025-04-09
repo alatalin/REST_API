@@ -8,7 +8,4 @@ public class RegisterResponseModel {
     String token;
     Integer id;
 
-
-
-
 }
