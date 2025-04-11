@@ -12,7 +12,7 @@ import static utils.TestData.*;
 
 public class AuthApi {
 
-    @Step("API authorization")
+    @Step("API авторизация")
     public AuthModel login() {
 
         LoginModel loginModel = new LoginModel();
