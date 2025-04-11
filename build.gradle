@@ -8,7 +8,8 @@ group = 'myrambler.alatalin'
 version = '1.0-SNAPSHOT'
 
 def restAssuredVersion = "5.5.1",
-    allureVersion = "2.27.0"
+    allureVersion = "2.27.0",
+    selenideVersion = "7.7.3"
 
 allure {
     report {
@@ -31,11 +32,12 @@ repositories {
 dependencies {
     testImplementation(
             "org.junit.jupiter:junit-jupiter:5.10.0",
-            "com.codeborne:selenide:7.7.3",
+            "com.codeborne:selenide:$selenideVersion",
             "org.slf4j:slf4j-simple:2.0.16",
             "io.rest-assured:rest-assured:$restAssuredVersion",
             "io.rest-assured:json-schema-validator:$restAssuredVersion",
             "io.qameta.allure:allure-rest-assured:$allureVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
             "org.assertj:assertj-core:3.26.0"
 
     )

@@ -1,5 +1,6 @@
 package specs;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
@@ -22,21 +23,13 @@ public class ApiSpec {
                 .log(ALL)
                 .build();
 
+        public static ResponseSpecification responseSpecStatus201 = new ResponseSpecBuilder()
+                .expectStatusCode(201)
+                .log(ALL)
+                .build();
+
         public static ResponseSpecification responseSpecStatus204 = new ResponseSpecBuilder()
                 .expectStatusCode(204)
                 .log(ALL)
                 .build();
-
-        public static ResponseSpecification responseSpecStatus400 = new ResponseSpecBuilder()
-                .expectStatusCode(400)
-                .log(ALL)
-                .build();
-
-        public static ResponseSpecification responseSpecStatus404 = new ResponseSpecBuilder()
-                .expectStatusCode(404)
-                .log(ALL)
-                .build();
-
-
-
 }
