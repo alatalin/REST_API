@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import models.AuthModel;
 import models.LoginModel;
 
-
 import static io.restassured.RestAssured.given;
 import static specs.ApiSpec.getResponseSpecStatusCode;
 import static specs.ApiSpec.requestSpec;

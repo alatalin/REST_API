@@ -3,7 +3,6 @@ package tests;
 import api.AuthApiSteps;
 import login.WithLogin;
 import models.AuthModel;
-import models.LoginModel;
 import models.response.BookArrayResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
