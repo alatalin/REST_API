@@ -1,8 +1,7 @@
 package tests;
 
-import api.BooksApi;
+import api.BooksApiSteps;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -22,7 +21,7 @@ import static utils.TestData.BASE_URL;
 public class TestBase {
 
     protected final ProfilePage profilePage = new ProfilePage();
-    protected final BooksApi booksApi = new BooksApi();
+    protected final BooksApiSteps booksApiSteps = new BooksApiSteps();
 
     @BeforeAll
     static void beforeAll() {

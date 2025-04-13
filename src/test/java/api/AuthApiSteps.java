@@ -6,18 +6,14 @@ import models.LoginModel;
 
 
 import static io.restassured.RestAssured.given;
+import static specs.ApiSpec.getResponseSpecStatusCode;
 import static specs.ApiSpec.requestSpec;
-import static specs.ApiSpec.responseSpecStatus200;
 import static utils.TestData.*;
 
-public class AuthApi {
+public class AuthApiSteps {
 
     @Step("API авторизация")
-    public AuthModel login() {
-
-        LoginModel loginModel = new LoginModel();
-        loginModel.setUserName(USERNAME);
-        loginModel.setPassword(PASSWORD);
+    public static AuthModel login(LoginModel loginModel) {
 
         return
                 given(requestSpec)
@@ -25,7 +21,7 @@ public class AuthApi {
                 .when()
                 .post(LOGIN_URL)
                 .then()
-                .spec(responseSpecStatus200)
+                .spec(getResponseSpecStatusCode(200))
                 .extract().as(AuthModel.class);
     }
 }

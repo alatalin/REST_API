@@ -4,8 +4,8 @@ import io.qameta.allure.Step;
 import models.AddBookModel;
 import models.AuthModel;
 import models.IsbnBookModel;
-import models.responce.BookArrayResponse;
-import models.responce.BooksListResponse;
+import models.response.BookArrayResponse;
+import models.response.BooksListResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,10 @@ import static io.restassured.RestAssured.given;
 import static specs.ApiSpec.*;
 import static utils.TestData.BOOKS_URL;
 
-public class BooksApi {
+public class BooksApiSteps {
 
     @Step("API. Добавляем книгу")
-    public BooksListResponse addBook(String isb, String token, String userId) {
+    public void addBook(String isb, String token, String userId) {
 
         List<IsbnBookModel> books = new ArrayList<>();
         books.add(new IsbnBookModel(isb));
@@ -25,14 +25,14 @@ public class BooksApi {
         AddBookModel bookData = new AddBookModel();
         bookData.setUserId(userId);
         bookData.setCollectionOfIsbns(books);
-        return given(requestSpec)
-               .header("Authorization", "Bearer " + token)
-               .body(bookData)
-               .when()
-               .post(BOOKS_URL)
-               .then()
-               .spec(responseSpecStatus201)
-               .extract().as(BooksListResponse.class);
+        given(requestSpec)
+                .header("Authorization", "Bearer " + token)
+                .body(bookData)
+                .when()
+                .post(BOOKS_URL)
+                .then()
+                .spec(getResponseSpecStatusCode(201))
+                .extract().as(BooksListResponse.class);
     }
 
     @Step("API. Получаем список книг")
@@ -41,7 +41,7 @@ public class BooksApi {
                .when()
                .get(BOOKS_URL)
                .then()
-               .spec(responseSpecStatus200)
+               .spec(getResponseSpecStatusCode(200))
                .extract().as(BookArrayResponse.class);
     }
 
@@ -53,6 +53,6 @@ public class BooksApi {
         .when()
         .delete(BOOKS_URL)
         .then()
-        .spec(responseSpecStatus204);
+        .spec(getResponseSpecStatusCode(204));
     }
 }

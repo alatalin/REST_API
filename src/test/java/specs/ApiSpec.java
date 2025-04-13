@@ -18,18 +18,10 @@ public class ApiSpec {
                 .log().all()
                 .contentType(JSON);
 
-        public static ResponseSpecification responseSpecStatus200 = new ResponseSpecBuilder()
-                .expectStatusCode(200)
+        public static ResponseSpecification getResponseSpecStatusCode(int statusCode) {
+                return new ResponseSpecBuilder()
+                .expectStatusCode(statusCode)
                 .log(ALL)
                 .build();
-
-        public static ResponseSpecification responseSpecStatus201 = new ResponseSpecBuilder()
-                .expectStatusCode(201)
-                .log(ALL)
-                .build();
-
-        public static ResponseSpecification responseSpecStatus204 = new ResponseSpecBuilder()
-                .expectStatusCode(204)
-                .log(ALL)
-                .build();
+        }
 }

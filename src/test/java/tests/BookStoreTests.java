@@ -1,12 +1,15 @@
 package tests;
 
-import api.AuthApi;
+import api.AuthApiSteps;
 import login.WithLogin;
 import models.AuthModel;
-import models.responce.BookArrayResponse;
+import models.LoginModel;
+import models.response.BookArrayResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
+import static utils.TestData.loginModel;
 
 @Tag("api")
 public class BookStoreTests extends TestBase {
@@ -17,14 +20,14 @@ public class BookStoreTests extends TestBase {
     @DisplayName("Успешное удаление книги из списка профиля")
     @WithLogin
     void successDeleteBookFromProfileTest() {
-        BookArrayResponse collection = booksApi.getBooks();
-        AuthModel authResponse = new AuthApi().login();
+        BookArrayResponse collection = booksApiSteps.getBooks();
+        AuthModel authResponse = AuthApiSteps.login(loginModel);
 
-        booksApi.deleteBooks(authResponse);
+        booksApiSteps.deleteBooks(authResponse);
 
         String isbn = collection.getBooks()[BOOK_INDEX].getIsbn();
         String title = collection.getBooks()[BOOK_INDEX].getTitle();
-        booksApi.addBook(isbn, authResponse.getToken(), authResponse.getUserId());
+        booksApiSteps.addBook(isbn, authResponse.getToken(), authResponse.getUserId());
 
         profilePage
                 .openPage()
